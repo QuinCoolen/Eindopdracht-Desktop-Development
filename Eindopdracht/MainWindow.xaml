@@ -1,0 +1,51 @@
+﻿<Window x:Class="Eindopdracht.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Eindopdracht"
+        mc:Ignorable="d"
+        Title="Eindopdracht" Height="600" Width="1000">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Eindopdracht;component/images/background.jpg"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White">People</TextBlock>
+
+        <TextBlock Grid.Column="3" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White">Countries</TextBlock>
+
+        <ListView x:Name="lvPeople" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding People}" DisplayMemberPath="Fullname" SelectedItem="{Binding OnePerson, UpdateSourceTrigger=PropertyChanged}"></ListView>
+
+
+        <ListView x:Name="lvCountries" Grid.Column="3" Grid.Row="1" ItemsSource="{Binding Countries}" DisplayMemberPath="CountryName" SelectedItem="{Binding Path=OneCountry, Mode=TwoWay}"></ListView>
+
+        <TextBlock Grid.Column="1" Grid.Row="2" Foreground="White" FontSize="20" HorizontalAlignment="Center">Persoon Toevoegen</TextBlock>
+        <Button x:Name="btAddPerson" Grid.Column="1" Grid.Row="2" Background="Transparent" BorderThickness="0" Foreground="LightGreen" FontSize="75" Margin="0,0,200,0" Click="btAddPerson_Click">+</Button>
+        <Button x:Name="btDeletePerson" Grid.Column="1" Grid.Row="2" Background="Transparent" BorderThickness="0" Foreground="Red" FontSize="75" Margin="200,0,0,0" Click="btDeletePerson_Click">-</Button>
+
+
+        <TextBlock Grid.Column="3" Grid.Row="2" Foreground="White" FontSize="20" HorizontalAlignment="Center">Favourite Country Toevoegen</TextBlock>
+        <Button x:Name="btAddFavCountry" Grid.Column="3" Grid.Row="2" Background="Transparent" BorderThickness="0" Foreground="LightGreen" FontSize="75" Margin="0,0,200,0" Click="btAddFavCountry_Click">+</Button>
+        <Button x:Name="btDeleteFavCountry" Grid.Column="3" Grid.Row="2" Background="Transparent" Foreground="Red" BorderThickness="0" FontSize="75" Margin="200,0,0,0" Click="btDeleteFavCountry_Click">-</Button>
+
+        <TextBlock x:Name="lvPerson" Grid.Column="1" Grid.Row="3" Background="White" DataContext="{Binding OnePerson}" Text="{Binding Fullname, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+
+        <ListView x:Name="lvFavCountries" Grid.Column="3" Grid.Row="3" ItemsSource="{Binding FavCountry, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="CountryName" SelectedItem="{Binding OneFavCountry}"></ListView>
+    </Grid>
+</Window>
